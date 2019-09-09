@@ -1,69 +1,46 @@
-<html>
-<head>
+<!DOCTYPE html>
+<script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 
-<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-<script>
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
+	<a href="https://github.com/jeromeetienne/AR.js/" target="_blank">AR.js</a> - example for a-frame
+	<br/>
+	Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@jerome_etienne</a>
+</div>
+	<a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+		<!-- handle unknown marker -->
+		<!-- <a-marker type='unknown'>
+			<a-box depth="1" height="1" width="1" position='0 0.5 0' material='opacity: 0.5; side:double; color:blue;'></a-box>
+		</a-marker> -->
 
-function makeAccel(){
-	
-	let accelerometer = new LinearAccelerationSensor({frequency: 3});
+		<!-- handle hiro marker -->
+		<a-marker preset='hiro'>
+			<a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:red;'>
+				<a-torus-knot radius='0.26' radius-tubular='0.05'
+				animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
+				</a-torus-knot>
+			</a-box>
+		</a-marker>
 
-	accelerometer.addEventListener('reading', e => {
-	  //console.log("Acceleration along the X-axis " + accelerometer.x);
-	  var xAcc = accelerometer.x.toFixed(0);
-	  var xDis = ((1/2)*(xAcc)/(1));
-	  alert(xDis);
-	  //console.log("Acceleration along the Y-axis " + accelerometer.y);
-	  var yAcc = accelerometer.y.toFixed(0);
-	  var yDis = ((1/2)*(yAcc)/(1));
-	  //console.log("Acceleration along the Z-axis " + accelerometer.z);
-	  var zAcc = accelerometer.z.toFixed(0);
-	  var zDis = ((1/2)*(zAcc)/(1));
-	  alert(zDis);
-	  /*
-	  alert(xAcc);
-	  alert(yAcc);
-	  alert(zAcc);
-	  */
-	  var el = document.querySelector('#rig');
-	  el.object3D.position.x += xDis;
-	  //el.object3D.position.y += yDis;
-	  el.object3D.position.z -= zDis;
-	  
-	});
-	accelerometer.start();
+		<!-- handle matrix marker -->
+		<a-marker type='barcode' value='5'>
+			<a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:pink;'>
+				<a-torus-knot radius='0.26' radius-tubular='0.05'
+				animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
+				</a-torus-knot>
+			</a-box>
+		</a-marker>
 
-}
-AFRAME.registerComponent('foo', {
-	init: function () {
-		//initialLocation();
-		makeAccel();  // Reference to the scene element.
-	}	
-});
-//setInterval(callDeviceAPIs, 1000);
-</script>
-</head>
-<body>
+		<!-- handle kanji marker -->
+		<a-marker preset='kanji'>
+			<a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:green;'>
+				<a-torus-knot radius='0.26' radius-tubular='0.05'
+				animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
+				</a-torus-knot>
+			</a-box>
+		</a-marker>
 
-    <a-scene>	
-	<a-entity id="rig" foo position="0 1.6 0"  wasd-controls look-controls>
-	  <a-entity id="camera" camera></a-entity>
-	</a-entity>
-
-      <a-box position="0 0.5 0" rotation="45 45 45" color="black"></a-box>
-      <a-box position="3 0.5 0" rotation="0 0 0" color="red"></a-box>
-      <a-box position="6 0.5 0" rotation="0 0 0" color="red"></a-box>
-      <a-box position="9 0.5 0" rotation="0 0 0" color="red"></a-box>
-      <a-box position="-3 0.5 0" rotation="0 0 0" color="blue"></a-box>
-      <a-box position="-6 0.5 0" rotation="0 0 0" color="blue"></a-box>
-      <a-box position="-9 0.5 0" rotation="0 0 0" color="blue"></a-box>
-      <a-box position="0 0.5 3" rotation="0 0 0" color="green"></a-box>
-      <a-box position="0 0.5 6" rotation="0 0 0" color="green"></a-box>
-      <a-box position="0 0.5 9" rotation="0 0 0" color="green"></a-box>
-      <a-box position="0 0.5 -3" rotation="0 0 0" color="yellow"></a-box>
-      <a-box position="0 0.5 -6" rotation="0 0 0" color="yellow"></a-box>
-      <a-box position="0 0.5 -9" rotation="0 0 0" color="yellow"></a-box>
-   </a-scene>
-   
+		<!-- add a simple camera -->
+		<a-entity camera></a-entity>
+	</a-scene>
 </body>
 </html>
