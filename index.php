@@ -14,7 +14,7 @@
       </a-marker>
 	
 	<a-marker preset='kanji'>
-		<a-obj-model src="#crate-obj" mtl="#crate-mtl"></a-obj-model>
+		<a-obj-model src="#crate-obj" mtl="#crate-mtl" scale=".1 .1 .1"></a-obj-model>
 	</a-marker>
     <a-entity camera></a-entity>
     </a-scene>
