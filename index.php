@@ -2,9 +2,7 @@
 <html>
 <!--
 <a-scene embedded arjs>
-      <a-marker preset="hiro">
-          <a-box position='0 0.5 0' material='color: yellow;'></a-box>
-      </a-marker>
+
 <a-entity camera></a-entity>
 -->
 <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
@@ -15,7 +13,11 @@
 		<a-asset-item id="crate-obj" src="objHotdog.obj"></a-asset-item>
 		<a-asset-item id="crate-mtl" src="objHotdog.mtl"></a-asset-item>
 	  </a-assets>
-	  
+
+      <a-marker preset="hiro">
+          <a-box position='0 0.5 0' material='color: yellow;'></a-box>
+      </a-marker>	  
+	
 	<a-marker preset='kanji'>
 		<a-obj-model src="#crate-obj" mtl="#crate-mtl" scale=".3 .3 .3"></a-obj-model>
 	</a-marker>
